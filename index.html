@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#0a1a0b"/>
 <meta name="apple-mobile-web-app-title" content="RideStats"/>
 <link rel="manifest" href="manifest.json"/>
-<link rel="apple-touch-icon" href="logo.png"/>
+<link rel="apple-touch-icon" href="logo.svg"/>
 <title>RideStats</title>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Q55F5DPCJ"></script>
@@ -48,14 +48,20 @@ body{font-family:"Nunito",sans-serif;color:var(--text);background:var(--bg);disp
 @keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
 
 /* HEADER */
-.hdr{padding:12px 16px 8px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+.hdr{padding:10px 16px 8px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
 .hdr-top{display:flex;align-items:center;justify-content:space-between}
 .hdr-logo{display:flex;align-items:center;gap:8px}
-.hdr-logo img{height:28px;width:auto;border-radius:6px}
-.hdr-logo span{font-size:18px;font-weight:900;color:var(--green);letter-spacing:-0.5px}
-.date-pill{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-size:12px;color:var(--textMid);font-weight:700;display:flex;align-items:center;gap:5px}
-.date-pill input[type=date]{background:none;border:none;color:var(--textMid);font-family:"Nunito",sans-serif;font-size:12px;font-weight:700;outline:none;cursor:pointer;width:108px;color-scheme:dark}
-body.light .date-pill input[type=date]{color-scheme:light}
+.hdr-logo img{height:26px;width:auto;border-radius:6px}
+.hdr-logo span{font-size:17px;font-weight:900;color:var(--green);letter-spacing:-0.5px}
+
+/* DATE NAVIGATOR */
+.date-nav{display:flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 8px}
+.date-nav-btn{background:none;border:none;color:var(--textMid);font-size:16px;cursor:pointer;padding:2px 6px;font-family:"Nunito",sans-serif;font-weight:800;line-height:1}
+.date-nav-btn:active{color:var(--green)}
+.date-nav input[type=date]{background:none;border:none;color:var(--textMid);font-family:"Nunito",sans-serif;font-size:11px;font-weight:700;outline:none;cursor:pointer;width:90px;color-scheme:dark;text-align:center}
+body.light .date-nav input[type=date]{color-scheme:light}
+.date-nav .date-dot{width:6px;height:6px;border-radius:50%;background:var(--green);margin-left:3px;display:none}
+.date-nav .date-dot.has-data{display:inline-block}
 
 /* BANNER */
 .banner{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px 16px 10px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
@@ -75,7 +81,7 @@ body.dark .bc.red-card{background:#1a0808;border-color:#7f1d1d}
 .tab.on{background:var(--green);border-color:var(--green);color:#fff}
 
 /* CONTENT */
-.content{flex:1;overflow-y:auto;padding:12px 16px 90px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.content{flex:1;overflow-y:auto;padding:12px 16px 80px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 
 /* CARD */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px}
@@ -88,13 +94,10 @@ body.dark .bc.red-card{background:#1a0808;border-color:#7f1d1d}
 .inp{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:9px 11px;color:var(--text);font-size:16px;font-family:"Nunito",sans-serif;font-weight:800;outline:none;width:130px;text-align:right;transition:border-color .15s}
 .inp:focus{border-color:var(--green)}
 .inp.ok{border-color:var(--green)!important}
-.inp.wide{width:100%;text-align:left}
 select.inp{cursor:pointer;color-scheme:dark}
 body.light select.inp{color-scheme:light}
-
-/* SAVE BTN */
 .save-btn{width:100%;padding:12px;background:var(--green);color:#fff;font-size:14px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:"Nunito",sans-serif;margin-top:8px;transition:all .15s}
-.save-btn:active{transform:scale(.98);filter:brightness(.9)}
+.save-btn:active{transform:scale(.98)}
 
 /* RESULT ROW */
 .rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
@@ -115,23 +118,31 @@ body.light select.inp{color-scheme:light}
 .mtile .ml{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--textDim);font-weight:800;margin-bottom:3px}
 .mtile .mv{font-size:16px;font-weight:900}
 
+/* HISTORY TABLE */
+.hist-table{width:100%;border-collapse:collapse;font-size:12px}
+.hist-table th{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--textDim);font-weight:800;padding:6px 4px;border-bottom:1px solid var(--border);text-align:left}
+.hist-table td{padding:7px 4px;border-bottom:1px solid var(--border);color:var(--textMid);font-weight:600}
+.hist-table tr:last-child td{border-bottom:none}
+.hist-table tr.cur-day td{color:var(--text);font-weight:800}
+.hist-table .td-g{color:var(--green);font-weight:800}
+.hist-table .td-r{color:var(--red);font-weight:800}
+.hist-table .td-b{color:var(--blue);font-weight:800}
+
 /* COMPARE CARD */
 .compare-card{border-radius:14px;padding:14px;margin-bottom:10px;border:1.5px solid}
 .compare-card.good{background:var(--greenBg);border-color:var(--greenDim)}
 .compare-card.ok{background:#1a1500;border-color:#7a6000}
 body.light .compare-card.ok{background:#fffde7;border-color:#f9a825}
-.compare-card.warn{background:var(--warnBg);border-color:var(--warnDim)}
 .compare-msg{font-size:13px;font-weight:700;margin-bottom:8px}
 .compare-card.good .compare-msg{color:var(--green)}
 .compare-card.ok .compare-msg{color:var(--yellow)}
-.compare-card.warn .compare-msg{color:var(--warn)}
 .compare-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
 .compare-lbl{color:var(--textDim);font-weight:600}
 .compare-val{font-weight:800}
 
-/* ALARM CARD */
+/* ALARM */
 .alarm-card{background:var(--warnBg);border:1.5px solid var(--warnDim);border-radius:14px;padding:14px;margin-bottom:10px}
-.alarm-title{font-size:12px;font-weight:800;color:var(--warn);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.alarm-title{font-size:12px;font-weight:800;color:var(--warn);margin-bottom:6px}
 .alarm-text{font-size:12px;color:var(--textMid);line-height:1.6}
 
 /* BEST DAY */
@@ -151,7 +162,7 @@ body.light .compare-card.ok{background:#fffde7;border-color:#f9a825}
 .hitem{display:flex;justify-content:space-between;align-items:center;padding:9px 11px;background:var(--surface2);border-radius:9px;margin-bottom:6px;border:1px solid var(--border)}
 .del-btn{background:none;border:none;color:var(--red);font-size:15px;cursor:pointer;padding:2px 5px;font-family:"Nunito",sans-serif}
 
-/* PERIOD SELECTOR */
+/* PERIOD */
 .period-sel{display:flex;gap:6px;margin-bottom:12px}
 .period-btn{flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:800;border:1.5px solid var(--border);background:var(--surface);color:var(--textMid);cursor:pointer;font-family:"Nunito",sans-serif;text-align:center;transition:all .15s}
 .period-btn.on{background:var(--green);border-color:var(--green);color:#fff}
@@ -160,21 +171,20 @@ body.light .compare-card.ok{background:#fffde7;border-color:#f9a825}
 .drange{display:flex;gap:8px;margin-bottom:12px;align-items:center}
 .drange input[type=date]{flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:8px 10px;color:var(--text);font-size:13px;font-family:"Nunito",sans-serif;font-weight:700;outline:none;color-scheme:dark}
 body.light .drange input[type=date]{color-scheme:light}
-.drange input[type=date]:focus{border-color:var(--green)}
 .drange span{color:var(--textDim);font-size:14px;font-weight:800}
 
 /* CHART */
 .chart-wrap{background:var(--surface2);border-radius:9px;padding:12px;margin-top:8px}
 .chart-bars{display:flex;align-items:flex-end;gap:6px;height:80px;justify-content:space-around}
 .chart-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
-.chart-bar{width:100%;background:var(--green);border-radius:4px 4px 0 0;min-height:3px;transition:height .3s;opacity:.7}
+.chart-bar{width:100%;background:var(--green);border-radius:4px 4px 0 0;min-height:3px;opacity:.7}
 .chart-bar.best{opacity:1}
 .chart-bar.empty{background:var(--border)}
 .chart-label{font-size:9px;color:var(--textDim);font-weight:800;text-align:center}
 .chart-val{font-size:8px;color:var(--textMid);font-weight:700;text-align:center}
 
 /* SETTINGS FAB */
-.settings-fab{position:fixed;bottom:20px;right:16px;width:50px;height:50px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;font-size:22px;box-shadow:0 4px 16px var(--shadow);transition:all .15s}
+.settings-fab{position:fixed;bottom:90px;right:16px;width:46px;height:46px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;font-size:20px;box-shadow:0 4px 16px var(--shadow);transition:all .15s}
 .settings-fab:active{transform:scale(.93)}
 
 /* SETTINGS PANEL */
@@ -197,17 +207,14 @@ body.light .drange input[type=date]{color-scheme:light}
 input:checked+.slider{background:var(--green)}
 input:checked+.slider:before{transform:translateX(20px)}
 .sinp{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:7px 10px;color:var(--text);font-size:14px;font-family:"Nunito",sans-serif;font-weight:800;outline:none;width:75px;text-align:right}
-.sinp:focus{border-color:var(--green)}
-.sbtn{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:10px 14px;color:var(--textMid);font-size:13px;font-weight:700;cursor:pointer;font-family:"Nunito",sans-serif;width:100%;text-align:left;margin-top:6px;transition:all .15s;display:flex;align-items:center;gap:8px}
-.sbtn:active{background:var(--border)}
+.sbtn{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:10px 14px;color:var(--textMid);font-size:13px;font-weight:700;cursor:pointer;font-family:"Nunito",sans-serif;width:100%;text-align:left;margin-top:6px;display:flex;align-items:center;gap:8px}
 
 /* MANUAL */
 .manual-content{font-size:13px;color:var(--textMid);line-height:1.7}
 .manual-content h3{font-size:14px;font-weight:800;color:var(--text);margin:14px 0 6px}
 .manual-content h3:first-child{margin-top:0}
-.manual-content p{margin-bottom:6px}
 .manual-note{background:var(--greenBg);border:1px solid var(--greenDim);border-radius:9px;padding:10px 12px;font-size:12px;color:var(--green);margin-top:10px;margin-bottom:10px;font-weight:700}
-.donate-row{display:flex;gap:8px;margin-top:12px;margin-bottom:8px}
+.donate-row{display:flex;gap:8px;margin-top:8px;margin-bottom:8px}
 .donate-btn{flex:1;padding:11px;border-radius:12px;font-size:13px;font-weight:800;border:none;cursor:pointer;font-family:"Nunito",sans-serif;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px}
 .donate-btn.revolut{background:#191c20;color:#fff}
 .donate-btn.paypal{background:#003087;color:#fff}
@@ -217,24 +224,22 @@ input:checked+.slider:before{transform:translateX(20px)}
 .bolt-dot{width:10px;height:10px;border-radius:50%;background:#3ddc6b;display:inline-block;flex-shrink:0}
 .uber-dot{width:10px;height:10px;border-radius:50%;background:#222;border:1.5px solid #666;display:inline-block;flex-shrink:0}
 body.light .uber-dot{background:#1a1a1a;border-color:#444}
-
 .inote{font-size:10px;color:var(--textDim);margin-top:6px;text-align:center;font-style:italic}
 
 /* FOOTER */
-.footer{background:var(--surface);border-top:1px solid var(--border);padding:8px 16px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px}
-.footer-copy{font-size:10px;color:var(--textDim);text-align:center;letter-spacing:.2px}
-.footer-donate{display:flex;gap:8px}
-.footer-btn{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;border:none;cursor:pointer;font-family:"Nunito",sans-serif;text-decoration:none;display:flex;align-items:center;gap:4px}
+.footer{background:var(--surface);border-top:1px solid var(--border);padding:10px 16px 14px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px}
+.footer-coffee{font-size:13px;font-weight:800;color:var(--textMid);display:flex;align-items:center;gap:6px}
+.footer-donate{display:flex;gap:8px;width:100%}
+.footer-btn{flex:1;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:800;border:none;cursor:pointer;font-family:"Nunito",sans-serif;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
 .footer-btn.rev{background:#191c20;color:#fff}
 .footer-btn.pay{background:#003087;color:#fff}
-
-/* PRINT - raport PDF fereastra noua */
+.footer-copy{font-size:9px;color:var(--textDim);text-align:center;letter-spacing:.2px}
 </style>
 </head>
 <body class="dark">
 
 <div id="splash">
-  <img src="logo.png" alt="RideStats" onerror="this.style.fontSize='40px';this.outerHTML='<span style=\'font-size:60px\'>🚗</span>'"/>
+  <img src="logo.svg" alt="RideStats" onerror="this.outerHTML='<span style=\'font-size:60px\'>🚗</span>'"/>
   <h1>RideStats</h1>
   <p>Calculator venituri ridesharing</p>
   <div class="dev">Dezvoltat de Ștefanache Marius</div>
@@ -243,10 +248,15 @@ body.light .uber-dot{background:#1a1a1a;border-color:#444}
 <div class="hdr">
   <div class="hdr-top">
     <div class="hdr-logo">
-      <img src="logo.png" alt="RideStats" style="height:28px;border-radius:6px" onerror="this.outerHTML='<span style=\'font-size:22px\'>🚗</span>'"/>
+      <img src="logo.svg" alt="RideStats" style="height:26px;border-radius:6px" onerror="this.outerHTML='<span style=\'font-size:20px\'>🚗</span>'"/>
       <span>RideStats</span>
     </div>
-    <div class="date-pill">📅 <input type="date" id="curDate" onchange="onDateChange(this.value)"/></div>
+    <div class="date-nav">
+      <button class="date-nav-btn" onclick="changeDay(-1)">‹</button>
+      <input type="date" id="curDate" onchange="onDateChange(this.value)"/>
+      <span class="date-dot" id="dateDot"></span>
+      <button class="date-nav-btn" onclick="changeDay(1)">›</button>
+    </div>
   </div>
 </div>
 
@@ -266,6 +276,7 @@ body.light .uber-dot{background:#1a1a1a;border-color:#444}
 </div>
 
 <div class="content" id="mainContent"></div>
+
 <div class="settings-fab" onclick="openSettings('main')">⚙️</div>
 
 <div class="settings-overlay" id="settingsOverlay" onclick="closeSettingsOutside(event)">
@@ -280,11 +291,12 @@ body.light .uber-dot{background:#1a1a1a;border-color:#444}
 </div>
 
 <div class="footer">
-  <div class="footer-copy">© 2026 RideStats by Ștefanache Marius — Toate drepturile rezervate</div>
+  <div class="footer-coffee">☕ Trimite o cafea</div>
   <div class="footer-donate">
     <a href="https://revolut.me/mariusoo3x/10" target="_blank" class="footer-btn rev">💚 Revolut 10 Lei</a>
     <a href="https://www.paypal.me/MariusStefanache89/2" target="_blank" class="footer-btn pay">💙 PayPal 2€</a>
   </div>
+  <div class="footer-copy">© 2026 RideStats by Ștefanache Marius — Toate drepturile rezervate</div>
 </div>
 
 <script>
@@ -293,10 +305,11 @@ const S={
   set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
 };
 
-let curTab='acasa', curDate=new Date().toISOString().slice(0,10);
+let curTab='acasa';
+let curDate=new Date().toISOString().slice(0,10);
 
-function getDay(d){return S.get('z',{})[d]||{bolt:'',uber:'',numerar:'',km:'',pret:'',sh:'',sm:'0',eh:'',em:'0'}}
-function setDay(d,obj){const all=S.get('z',{});all[d]={...getDay(d),...obj};S.set('z',all);refreshBanner();}
+function getDay(d){return S.get('z',{})[d]||{bolt:'',uber:'',numerar:'',km:'',pret:'',sh:'',sm:'0',eh:'',em:'0',ore_manuale:''}}
+function setDay(d,obj){const all=S.get('z',{});all[d]={...getDay(d),...obj};S.set('z',all);refreshBanner();updateDateDot();}
 function getCfg(){return S.get('cfg',{uzuraOn:false,uzuraPct:3,taxeOn:false,taxePct:10,targetOn:false,targetType:'lunar',targetVal:3000,consumOn:false,consumVara:6,consumIarna:7,notifOn:false,pretL:7.5,darkMode:true})}
 function setCfg(obj){const cfg=getCfg();Object.assign(cfg,obj);S.set('cfg',cfg);}
 
@@ -308,8 +321,14 @@ function calcDay(date){
   const km=parseFloat(d.km)||0,pret=parseFloat(d.pret)||getCfg().pretL||7.5,consum=getConsum(date);
   const venit=bolt+uber,costCarb=km>0?(km*consum/100)*pret:0,profitZi=venit-costCarb;
   const costKm=km>0?profitZi/km:0,castigKm=km>0?venit/km:0;
+  // Ore: manual override or calculated
   let ore=0;
-  if(d.sh!==''&&d.eh!==''){const s=parseInt(d.sh)*60+(parseInt(d.sm)||0),e=parseInt(d.eh)*60+(parseInt(d.em)||0);ore=e>s?(e-s)/60:0;}
+  if(d.ore_manuale&&parseFloat(d.ore_manuale)>0){
+    ore=parseFloat(d.ore_manuale);
+  } else if(d.sh!==''&&d.eh!==''){
+    const s=parseInt(d.sh)*60+(parseInt(d.sm)||0),e=parseInt(d.eh)*60+(parseInt(d.em)||0);
+    ore=e>s?(e-s)/60:0;
+  }
   return{bolt,uber,numerar,km,venit,costCarb,profitZi,costKm,castigKm,ore,castigOrar:ore>0?profitZi/ore:0,pret,consum};
 }
 
@@ -341,9 +360,8 @@ function calcPeriod(from,to){
   const boltTotal=dayData.reduce((s,{zi})=>s+zi.bolt,0);
   const uberTotal=dayData.reduce((s,{zi})=>s+zi.uber,0);
   const numerarTotal=dayData.reduce((s,{zi})=>s+zi.numerar,0);
-  const oreTotal=tO;
   const oreMedZi=za>0?tO/za:0;
-  return{tV,tC,tO,tK,za,totCh,uzura,taxe,profitFinal,profitBrut,castigOrar:tO>0?profitBrut/tO:0,costKm:tK>0?profitBrut/tK:0,avgProfit:za>0?profitFinal/za:0,avgVenit:za>0?tV/za:0,bestDow,bestAvg,dowAvg,pretMed,boltTotal,uberTotal,numerarTotal,ch,oreMedZi};
+  return{tV,tC,tO,tK,za,totCh,uzura,taxe,profitFinal,profitBrut,castigOrar:tO>0?profitBrut/tO:0,costKm:tK>0?profitBrut/tK:0,avgProfit:za>0?profitFinal/za:0,avgVenit:za>0?tV/za:0,bestDow,bestAvg,dowAvg,pretMed,boltTotal,uberTotal,numerarTotal,ch,oreMedZi,dayData};
 }
 
 function calcMonth(mk){
@@ -355,8 +373,16 @@ function fmt(v){return(isNaN(v)||v===null?0:v).toFixed(2).replace('.',',')+' Lei
 function fmtH(h){if(!h||h<=0)return'—';const hh=Math.floor(h),mm=Math.round((h-hh)*60);return`${hh}h ${mm<10?'0':''}${mm}m`;}
 function fmtD(iso){if(!iso)return'';const[y,m,d]=iso.split('-');return`${d}/${m}/${y}`;}
 function mName(m){return['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'][m-1];}
+function mNameShort(m){return['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Nov','Dec'][m-1];}
 function dowName(d){return['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][d];}
 function dowShort(d){return['Du','Lu','Ma','Mi','Jo','Vi','Sâ'][d];}
+
+/* Date dot indicator */
+function updateDateDot(){
+  const d=getDay(curDate);
+  const hasData=d.bolt||d.uber||d.km||d.ore_manuale||(d.sh&&d.eh);
+  document.getElementById('dateDot').className='date-dot'+(hasData?' has-data':'');
+}
 
 function refreshBanner(){
   const c=calcDay(curDate);
@@ -365,7 +391,25 @@ function refreshBanner(){
   document.getElementById('bProfit').textContent=fmt(c.profitZi);
 }
 
-function onDateChange(val){curDate=val;refreshBanner();renderTab();}
+function changeDay(dir){
+  const d=new Date(curDate);
+  d.setDate(d.getDate()+dir);
+  curDate=d.toISOString().slice(0,10);
+  document.getElementById('curDate').value=curDate;
+  refreshBanner();updateDateDot();renderTab();
+}
+
+function onDateChange(val){curDate=val;refreshBanner();updateDateDot();renderTab();}
+
+/* Get month history for a tab */
+function getMonthHistory(mk, filter){
+  const all=S.get('z',{});
+  return Object.keys(all)
+    .filter(k=>k.startsWith(mk))
+    .sort()
+    .map(date=>({date, d:getDay(date), zi:calcDay(date)}))
+    .filter(filter);
+}
 
 const TABS=['acasa','incasari','deplasare','program','cheltuieli','raport'];
 function showTab(tab){curTab=tab;document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',TABS[i]===tab));renderTab();}
@@ -407,8 +451,6 @@ function toggleChObs(){
 function tAcasa(){
   const mk=curDate.slice(0,7),m=parseInt(mk.slice(5));
   const data=calcMonth(mk),cfg=getCfg(),zi=calcDay(curDate);
-
-  // Target
   let targetHtml='';
   if(cfg.targetOn){
     const tv=parseFloat(cfg.targetVal)||0,cur=cfg.targetType==='lunar'?data.profitFinal:zi.profitZi;
@@ -419,46 +461,29 @@ function tAcasa(){
       <div style="text-align:center;font-size:11px;color:var(--textDim);margin-top:5px">Rămas: <strong style="color:var(--green)">${fmt(Math.max(0,tv-cur))}</strong></div>
       </div></div>`;
   }
-
-  // Compare azi vs medie lunara
   let compareHtml='';
   if(zi.venit>0&&data.za>0){
-    const medieProfitZi=data.avgProfit;
-    const diff=zi.profitZi-medieProfitZi;
-    const pct=medieProfitZi>0?Math.round((diff/medieProfitZi)*100):0;
-    let cls,msg;
-    if(diff>=0){
-      cls='good';
-      const msgs=['Felicitări, azi ai depășit media lunară! Keep going! 🚀','Zi excelentă! Ești peste medie, continuă tot așa! 💪','Bravo! Azi ai bătut media lunii. Fiecare zi ca asta contează! ⭐'];
-      msg=msgs[Math.floor(Math.random()*msgs.length)];
-    } else {
-      cls='ok';
-      const msgs=['Nu-i nimic, zilele bune urmează! Mâine va fi mai bine. 💛','Sub medie azi, dar luna nu s-a terminat. Poți recupera! 🔄','Fiecare zi e o nouă șansă. Mâine te ridici și mai sus! 🌅'];
-      msg=msgs[Math.floor(Math.random()*msgs.length)];
-    }
+    const diff=zi.profitZi-data.avgProfit;
+    const pct=data.avgProfit>0?Math.round((diff/data.avgProfit)*100):0;
+    const cls=diff>=0?'good':'ok';
+    const msgs=diff>=0?
+      ['Felicitări, azi ai depășit media lunară! Keep going! 🚀','Zi excelentă! Ești peste medie, continuă tot așa! 💪','Bravo! Azi ai bătut media lunii. Fiecare zi ca asta contează! ⭐']:
+      ['Nu-i nimic, zilele bune urmează! Mâine va fi mai bine. 💛','Sub medie azi, dar luna nu s-a terminat. Poți recupera! 🔄','Fiecare zi e o nouă șansă. Mâine te ridici și mai sus! 🌅'];
+    const msg=msgs[new Date().getSeconds()%msgs.length];
     compareHtml=`<div class="compare-card ${cls}">
       <div class="compare-msg">${msg}</div>
       <div class="compare-row"><span class="compare-lbl">Profit azi</span><span class="compare-val ${diff>=0?'g':'r'}">${fmt(zi.profitZi)}</span></div>
-      <div class="compare-row"><span class="compare-lbl">Media lunară/zi</span><span class="compare-val">${fmt(medieProfitZi)}</span></div>
+      <div class="compare-row"><span class="compare-lbl">Media lunară/zi</span><span class="compare-val">${fmt(data.avgProfit)}</span></div>
       <div class="compare-row"><span class="compare-lbl">Diferență</span><span class="compare-val ${diff>=0?'g':'r'}">${diff>=0?'+':''}${fmt(diff)} (${diff>=0?'+':''}${pct}%)</span></div>
     </div>`;
   }
-
-  // Alarm: ore mari + profit sub medie
   let alarmHtml='';
-  if(zi.ore>0&&data.za>0&&data.oreMedZi>0){
-    const oreAzi=zi.ore,profitAzi=zi.profitZi;
-    const oreSusMedie=oreAzi>data.oreMedZi*1.1;
-    const profitSubMedie=profitAzi<data.avgProfit*0.9;
-    if(oreSusMedie&&profitSubMedie){
-      alarmHtml=`<div class="alarm-card">
-        <div class="alarm-title">⚠️ Semnal de alarmă</div>
-        <div class="alarm-text">Azi ai lucrat <strong>${fmtH(oreAzi)}</strong> (peste media de ${fmtH(data.oreMedZi)}), dar profitul de <strong>${fmt(profitAzi)}</strong> e sub media lunară de ${fmt(data.avgProfit)}.<br><br>Verifică costul carburantului sau numărul de km — eficiența scade!</div>
-      </div>`;
-    }
+  if(zi.ore>0&&data.za>0&&data.oreMedZi>0&&zi.ore>data.oreMedZi*1.1&&zi.profitZi<data.avgProfit*0.9){
+    alarmHtml=`<div class="alarm-card">
+      <div class="alarm-title">⚠️ Semnal de alarmă</div>
+      <div class="alarm-text">Azi ai lucrat <strong>${fmtH(zi.ore)}</strong> (peste media de ${fmtH(data.oreMedZi)}), dar profitul de <strong>${fmt(zi.profitZi)}</strong> e sub media de ${fmt(data.avgProfit)}. Verifică costurile!</div>
+    </div>`;
   }
-
-  // Best day
   let bestDayHtml='';
   if(data.bestDow>=0&&data.za>=3){
     bestDayHtml=`<div class="bestday"><div class="bd-icon">🏆</div><div class="bd-info">
@@ -467,7 +492,6 @@ function tAcasa(){
       <div class="bd-sub">medie ${fmt(data.bestAvg)}/zi în ${mName(m)}</div>
     </div></div>`;
   }
-
   return`
   <div class="pblock">
     <div class="pl">Profit estimativ ${mName(m)} ${mk.slice(0,4)}</div>
@@ -482,8 +506,8 @@ function tAcasa(){
     <div class="mtile"><div class="ml">Câștig/km</div><div class="mv g">${data.tK>0?fmt(data.tV/data.tK)+'/km':'—'}</div></div>
     <div class="mtile"><div class="ml">Cost carburant</div><div class="mv r">${fmt(data.tC)}</div></div>
     <div class="mtile"><div class="ml">Cheltuieli</div><div class="mv r">${fmt(data.totCh)}</div></div>
-    ${data.uzura>0?`<div class="mtile"><div class="ml">Uzură (${getCfg().uzuraPct}%)</div><div class="mv r">${fmt(data.uzura)}</div></div>`:''}
-    ${data.taxe>0?`<div class="mtile"><div class="ml">Taxe (${getCfg().taxePct}%)</div><div class="mv r">${fmt(data.taxe)}</div></div>`:''}
+    ${data.uzura>0?`<div class="mtile"><div class="ml">Uzură</div><div class="mv r">${fmt(data.uzura)}</div></div>`:''}
+    ${data.taxe>0?`<div class="mtile"><div class="ml">Taxe</div><div class="mv r">${fmt(data.taxe)}</div></div>`:''}
   </div>
   ${zi.venit>0||zi.km>0?`<div class="card"><div class="card-title">📋 Ziua ${fmtD(curDate)}</div>
     ${zi.venit>0?`<div class="rrow"><span class="rk">Venit brut</span><span class="rv g">${fmt(zi.venit)}</span></div>`:''}
@@ -491,9 +515,7 @@ function tAcasa(){
     ${zi.km>0?`<div class="rrow"><span class="rk">Cost carburant estimat</span><span class="rv r">${fmt(zi.costCarb)}</span></div>`:''}
     ${zi.ore>0?`<div class="rrow"><span class="rk">Ore lucrate</span><span class="rv b">${fmtH(zi.ore)}</span></div>`:''}
   </div>`:''}
-  ${compareHtml}
-  ${alarmHtml}
-  ${bestDayHtml}`;
+  ${compareHtml}${alarmHtml}${bestDayHtml}`;
 }
 
 /* TAB INCASARI */
@@ -518,6 +540,15 @@ function tIncasari(d,zi){
 /* TAB DEPLASARE */
 function tDeplasare(d,zi){
   const cfg=getCfg();
+  const mk=curDate.slice(0,7);
+  const hist=getMonthHistory(mk,({zi})=>zi.km>0);
+  const totalKmLunar=hist.reduce((s,{zi})=>s+zi.km,0);
+  const histRows=hist.map(({date,zi})=>`<tr class="${date===curDate?'cur-day':''}">
+    <td>${fmtD(date)}</td>
+    <td class="td-g">${zi.km} km</td>
+    <td class="td-r">${fmt(zi.costCarb)}</td>
+    <td>${fmt(zi.pret)}/L</td>
+  </tr>`).join('');
   return`<div class="card"><div class="card-title">🚗 Deplasare — ${fmtD(curDate)}</div>
     <div class="irow"><span class="ilbl">Km parcurși</span>
       <input class="inp ai" type="number" inputmode="decimal" value="${d.km||''}" placeholder="0" data-fn="saveKm"/></div>
@@ -531,6 +562,12 @@ function tDeplasare(d,zi){
     <div class="rrow"><span class="rk">Cost carburant estimat</span><span class="rv r">${fmt(zi.costCarb)}</span></div>
     <div class="rrow"><span class="rk">Cost/km</span><span class="rv">${fmt(zi.costKm)}/km</span></div>
     <div class="rrow"><span class="rk">Câștig/km</span><span class="rv g">${fmt(zi.castigKm)}/km</span></div>
+  </div>`:''}
+  ${hist.length>0?`<div class="card"><div class="card-title">📅 Istoric ${mNameShort(parseInt(mk.slice(5)))} · Total: ${Math.round(totalKmLunar)} km</div>
+    <table class="hist-table">
+      <tr><th>Dată</th><th>Km</th><th>Cost carb.</th><th>Preț/L</th></tr>
+      ${histRows}
+    </table>
   </div>`:''}`;
 }
 
@@ -543,13 +580,34 @@ function tProgram(d,zi){
     os+=`<option value="${v}"${sv===v?' selected':''} >${lbl}</option>`;
     oe+=`<option value="${v}"${ev===v?' selected':''} >${lbl}</option>`;
   }
-  return`<div class="card"><div class="card-title">⏱ Program — ${fmtD(curDate)}</div>
+  const mk=curDate.slice(0,7);
+  const hist=getMonthHistory(mk,({zi})=>zi.ore>0);
+  const histRows=hist.map(({date,zi})=>`<tr class="${date===curDate?'cur-day':''}">
+    <td>${fmtD(date)}</td>
+    <td class="td-b">${fmtH(zi.ore)}</td>
+    <td class="td-g">${zi.castigOrar>0?fmt(zi.castigOrar)+'/h':'—'}</td>
+  </tr>`).join('');
+  return`
+  <div class="card"><div class="card-title">⏱ Introducere rapidă</div>
+    <div class="irow"><span class="ilbl">Ore lucrate</span>
+      <input class="inp ai" type="number" inputmode="decimal" value="${d.ore_manuale||''}" placeholder="ex: 6.5" step="0.25" data-fn="saveOreManuale" style="width:130px"/>
+    </div>
+    <p class="inote">Introdu direct numărul de ore (ex: 6.5 = 6h 30min)</p>
+  </div>
+  <div class="card"><div class="card-title">🕐 Calculator program</div>
     <div class="irow"><span class="ilbl">Ora start</span><select class="inp as" id="inp_sh" data-fn="saveProgram" style="width:130px">${os}</select></div>
     <div class="irow"><span class="ilbl">Ora final</span><select class="inp as" id="inp_eh" data-fn="saveProgram" style="width:130px">${oe}</select></div>
-    <p class="inote">Se salvează automat la selecție</p></div>
+    <p class="inote">Se salvează automat la selecție</p>
+  </div>
   ${zi.ore>0?`<div class="card"><div class="card-title">Rezultat</div>
     <div class="rrow"><span class="rk">Ore lucrate</span><span class="rv b">${fmtH(zi.ore)}</span></div>
     <div class="rrow"><span class="rk">Câștig orar net</span><span class="rv g">${fmt(zi.castigOrar)}/h</span></div>
+  </div>`:''}
+  ${hist.length>0?`<div class="card"><div class="card-title">📅 Istoric ${mNameShort(parseInt(mk.slice(5)))}</div>
+    <table class="hist-table">
+      <tr><th>Dată</th><th>Ore</th><th>Câștig/h</th></tr>
+      ${histRows}
+    </table>
   </div>`:''}`;
 }
 
@@ -574,7 +632,7 @@ function tCheltuieli(){
   <div class="card"><div class="card-title">Lista — ${mName(parseInt(mk.slice(5)))} ${mk.slice(0,4)}</div>
     ${lunar.length===0?'<p style="color:var(--textDim);font-size:13px;text-align:center;padding:10px 0">Nicio cheltuială înregistrată</p>'
       :lunar.map(c=>`<div class="hitem">
-        <div><div style="font-weight:800;color:var(--text);font-size:13px">${c.tip}${c.obs?' <span style="font-weight:600;color:var(--textDim);font-size:11px">— '+c.obs+'</span>':'' }</div>
+        <div><div style="font-weight:800;color:var(--text);font-size:13px">${c.tip}${c.obs?' <span style="font-weight:600;color:var(--textDim);font-size:11px">— '+c.obs+'</span>':''}</div>
         <div style="font-size:11px;color:var(--textDim)">${fmtD(c.data)}</div></div>
         <div style="display:flex;align-items:center;gap:7px">
           <span class="r" style="font-weight:800;font-size:14px">${fmt(c.suma)}</span>
@@ -620,6 +678,16 @@ function tRaport(){
     </div>`;
   }).join('');
 
+  // Zilnic history in raport
+  const histZile=data.dayData||[];
+  const histRows=histZile.map(({date,zi})=>`<tr>
+    <td>${fmtD(date)}</td>
+    <td class="td-g">${fmt(zi.venit)}</td>
+    <td>${zi.km>0?zi.km+' km':'—'}</td>
+    <td class="td-b">${fmtH(zi.ore)}</td>
+    <td class="td-g">${fmt(zi.profitZi)}</td>
+  </tr>`).join('');
+
   return`
   <div class="period-sel">
     <div class="period-btn${reportPeriod==='saptamanal'?' on':''}" onclick="setPeriod('saptamanal')">Săptămânal</div>
@@ -659,6 +727,12 @@ function tRaport(){
     <div class="mtile"><div class="ml">Km totali</div><div class="mv">${data.tK>0?Math.round(data.tK)+' km':'—'}</div></div>
     <div class="mtile"><div class="ml">Câștig/km</div><div class="mv g">${data.tK>0?fmt(data.tV/data.tK)+'/km':'—'}</div></div>
   </div>
+  ${histZile.length>0?`<div class="card"><div class="card-title">📋 Zile înregistrate</div>
+    <table class="hist-table">
+      <tr><th>Dată</th><th>Venit</th><th>Km</th><th>Ore</th><th>Profit</th></tr>
+      ${histRows}
+    </table>
+  </div>`:''}
   ${data.ch&&data.ch.length>0?`<div class="card"><div class="card-title">💸 Cheltuieli detaliate</div>
     ${data.ch.map(c=>`<div class="rrow">
       <span class="rk" style="flex:1">${c.tip}${c.obs?' — <em style="font-size:11px">'+c.obs+'</em>':''}<br><span style="font-size:10px;color:var(--textDim)">${fmtD(c.data)}</span></span>
@@ -681,107 +755,98 @@ function tRaport(){
 function setPeriod(p){reportPeriod=p;renderTab();}
 function changeReportMonth(m){reportMonth=m;renderTab();}
 
-/* PDF REPORT - fereastra noua structurata */
+/* PDF */
 function openPdfReport(fromDate,toDate,title){
   const data=calcPeriod(fromDate,toDate);
   const cfg=getCfg();
   const genDate=fmtD(new Date().toISOString().slice(0,10));
-  const w=window.open('','_blank');
   const dowNames=['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
   const chartRows=Array.from({length:7},(_,i)=>{
     const val=data.dowAvg[i]||0;
     const isBest=i===data.bestDow&&val>0;
     return val>0?`<tr${isBest?' style="background:#e8f5e9;font-weight:800"':''}><td>${dowNames[i]}</td><td style="text-align:right">${fmt(val)}</td><td style="text-align:right">${isBest?'🏆 Cea mai bună':''}</td></tr>`:'';
   }).join('');
-
+  const histZile=(data.dayData||[]).map(({date,zi})=>`<tr>
+    <td>${fmtD(date)}</td>
+    <td style="text-align:right;color:#1e7e3e;font-weight:700">${fmt(zi.venit)}</td>
+    <td style="text-align:right">${zi.km>0?zi.km+' km':'—'}</td>
+    <td style="text-align:right;color:#1a73e8">${fmtH(zi.ore)}</td>
+    <td style="text-align:right;color:#1e7e3e;font-weight:700">${fmt(zi.profitZi)}</td>
+  </tr>`).join('');
+  const w=window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html lang="ro"><head>
   <meta charset="UTF-8"/>
-  <title>RideStats — Raport ${title}</title>
+  <title>RideStats — ${title}</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;color:#1a1a1a;padding:30px;max-width:800px;margin:0 auto;font-size:13px}
     .header{display:flex;align-items:center;gap:16px;padding-bottom:16px;border-bottom:3px solid #1e7e3e;margin-bottom:24px}
-    .header img{width:50px;height:50px;border-radius:10px}
-    .header h1{font-size:24px;font-weight:900;color:#1e7e3e;margin:0}
+    .header h1{font-size:24px;font-weight:900;color:#1e7e3e}
     .header p{font-size:12px;color:#666;margin-top:2px}
     h2{font-size:14px;font-weight:800;color:#1e7e3e;text-transform:uppercase;letter-spacing:.5px;margin:20px 0 10px;padding-bottom:4px;border-bottom:1px solid #c8e6cc}
     table{width:100%;border-collapse:collapse;margin-bottom:16px}
     td,th{padding:8px 10px;border-bottom:1px solid #e8f5e9;font-size:13px}
-    th{background:#f0f7f1;font-weight:800;color:#1e7e3e;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-    .val-g{color:#1e7e3e;font-weight:800}
-    .val-r{color:#d93025;font-weight:800}
-    .val-b{color:#1a73e8;font-weight:800}
-    .val-y{color:#e37400;font-weight:800}
+    th{background:#f0f7f1;font-weight:800;color:#1e7e3e;font-size:11px;text-transform:uppercase}
     .profit-box{background:#e8f5e9;border:2px solid #1e7e3e;border-radius:10px;padding:20px;text-align:center;margin:16px 0}
-    .profit-box .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#1e7e3e;margin-bottom:6px;font-weight:700}
     .profit-box .val{font-size:36px;font-weight:900;color:#1e7e3e}
     .profit-box .sub{font-size:12px;color:#666;margin-top:4px}
-    .footer{margin-top:30px;padding-top:16px;border-top:1px solid #c8e6cc;text-align:center;font-size:11px;color:#999}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
     .tile{background:#f0f7f1;border:1px solid #c8e6cc;border-radius:8px;padding:12px;text-align:center}
     .tile .tl{font-size:10px;text-transform:uppercase;color:#888;font-weight:700;margin-bottom:4px}
-    .tile .tv{font-size:18px;font-weight:900}
-    @media print{button{display:none!important}.no-print{display:none}}
-  </style>
-  </head><body>
+    .tile .tv{font-size:16px;font-weight:900}
+    .footer-pdf{margin-top:30px;padding-top:16px;border-top:1px solid #c8e6cc;text-align:center;font-size:11px;color:#999}
+    @media print{.no-print{display:none}}
+  </style></head><body>
   <div class="header">
-    <img src="logo.png" onerror="this.style.display='none'"/>
     <div><h1>RideStats</h1><p>Raport: ${title} · Generat: ${genDate}</p></div>
   </div>
   <button onclick="window.print()" class="no-print" style="margin-bottom:20px;padding:10px 20px;background:#1e7e3e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">🖨️ Printează / Salvează PDF</button>
-
   <div class="profit-box">
-    <div class="lbl">Profit estimativ</div>
+    <div style="font-size:11px;text-transform:uppercase;color:#1e7e3e;margin-bottom:6px;font-weight:700">PROFIT ESTIMATIV</div>
     <div class="val">${fmt(data.profitFinal)}</div>
     <div class="sub">${data.za} zile active · medie ${fmt(data.avgProfit)}/zi</div>
   </div>
-
   <h2>💰 Încasări</h2>
   <table>
     <tr><th>Categorie</th><th style="text-align:right">Sumă</th></tr>
-    <tr><td>⚡ Bolt</td><td class="val-g" style="text-align:right">${fmt(data.boltTotal)}</td></tr>
+    <tr><td>⚡ Bolt</td><td style="text-align:right;color:#1e7e3e;font-weight:700">${fmt(data.boltTotal)}</td></tr>
     <tr><td>🔵 Uber</td><td style="text-align:right">${fmt(data.uberTotal)}</td></tr>
-    <tr><td><strong>Total venit brut</strong></td><td class="val-g" style="text-align:right"><strong>${fmt(data.tV)}</strong></td></tr>
-    <tr><td>💵 Din care numerar</td><td style="text-align:right">${fmt(data.numerarTotal)}</td></tr>
-    <tr><td>💳 Din care card</td><td style="text-align:right">${fmt(Math.max(0,data.tV-data.numerarTotal))}</td></tr>
+    <tr><td><strong>Total venit brut</strong></td><td style="text-align:right;color:#1e7e3e;font-weight:900">${fmt(data.tV)}</td></tr>
+    <tr><td>💵 Numerar</td><td style="text-align:right">${fmt(data.numerarTotal)}</td></tr>
+    <tr><td>💳 Card</td><td style="text-align:right">${fmt(Math.max(0,data.tV-data.numerarTotal))}</td></tr>
   </table>
-
   <h2>🚗 Costuri & Statistici</h2>
   <div class="grid">
-    <div class="tile"><div class="tl">Cost carburant</div><div class="tv val-r">${fmt(data.tC)}</div></div>
-    <div class="tile"><div class="tl">Preț mediu/L</div><div class="tv val-y">${fmt(data.pretMed)}</div></div>
+    <div class="tile"><div class="tl">Cost carburant</div><div class="tv" style="color:#d93025">${fmt(data.tC)}</div></div>
+    <div class="tile"><div class="tl">Preț mediu/L</div><div class="tv" style="color:#e37400">${fmt(data.pretMed)}</div></div>
     <div class="tile"><div class="tl">Km totali</div><div class="tv">${data.tK>0?Math.round(data.tK)+' km':'—'}</div></div>
-    <div class="tile"><div class="tl">Câștig/km</div><div class="tv val-g">${data.tK>0?fmt(data.tV/data.tK)+'/km':'—'}</div></div>
-    <div class="tile"><div class="tl">Ore lucrate</div><div class="tv val-b">${fmtH(data.tO)}</div></div>
-    <div class="tile"><div class="tl">Câștig orar</div><div class="tv val-b">${data.tO>0?fmt(data.castigOrar)+'/h':'—'}</div></div>
-    ${data.uzura>0?`<div class="tile"><div class="tl">Uzură (${cfg.uzuraPct}%)</div><div class="tv val-r">${fmt(data.uzura)}</div></div>`:''}
-    ${data.taxe>0?`<div class="tile"><div class="tl">Taxe (${cfg.taxePct}%)</div><div class="tv val-r">${fmt(data.taxe)}</div></div>`:''}
+    <div class="tile"><div class="tl">Ore lucrate</div><div class="tv" style="color:#1a73e8">${fmtH(data.tO)}</div></div>
+    <div class="tile"><div class="tl">Câștig orar</div><div class="tv" style="color:#1a73e8">${data.tO>0?fmt(data.castigOrar)+'/h':'—'}</div></div>
+    <div class="tile"><div class="tl">Câștig/km</div><div class="tv" style="color:#1e7e3e">${data.tK>0?fmt(data.tV/data.tK)+'/km':'—'}</div></div>
+    ${data.uzura>0?`<div class="tile"><div class="tl">Uzură (${cfg.uzuraPct}%)</div><div class="tv" style="color:#d93025">${fmt(data.uzura)}</div></div>`:''}
+    ${data.taxe>0?`<div class="tile"><div class="tl">Taxe (${cfg.taxePct}%)</div><div class="tv" style="color:#d93025">${fmt(data.taxe)}</div></div>`:''}
   </div>
-
-  ${data.totCh>0?`<h2>💸 Cheltuieli detaliate</h2>
+  ${histZile.length>0?`<h2>📋 Zile înregistrate</h2>
+  <table>
+    <tr><th>Dată</th><th style="text-align:right">Venit</th><th style="text-align:right">Km</th><th style="text-align:right">Ore</th><th style="text-align:right">Profit</th></tr>
+    ${histZile}
+  </table>`:''}
+  ${data.totCh>0?`<h2>💸 Cheltuieli</h2>
   <table>
     <tr><th>Tip</th><th>Mențiuni</th><th style="text-align:right">Dată</th><th style="text-align:right">Sumă</th></tr>
-    ${data.ch.map(c=>`<tr><td>${c.tip}</td><td style="color:#666;font-style:italic">${c.obs||'—'}</td><td style="text-align:right">${fmtD(c.data)}</td><td class="val-r" style="text-align:right">${fmt(c.suma)}</td></tr>`).join('')}
-    <tr><td colspan="3"><strong>Total cheltuieli</strong></td><td class="val-r" style="text-align:right"><strong>${fmt(data.totCh)}</strong></td></tr>
+    ${data.ch.map(c=>`<tr><td>${c.tip}</td><td style="color:#666;font-style:italic">${c.obs||'—'}</td><td style="text-align:right">${fmtD(c.data)}</td><td style="text-align:right;color:#d93025;font-weight:700">${fmt(c.suma)}</td></tr>`).join('')}
+    <tr><td colspan="3"><strong>Total</strong></td><td style="text-align:right;color:#d93025;font-weight:900">${fmt(data.totCh)}</td></tr>
   </table>`:''}
-
-  ${chartRows?`<h2>📊 Performanță per zi a săptămânii</h2>
-  <table>
-    <tr><th>Zi</th><th style="text-align:right">Medie profit</th><th style="text-align:right">Notă</th></tr>
-    ${chartRows}
-  </table>`:''}
-
-  <div class="footer">
-    © 2026 RideStats by Ștefanache Marius — Toate drepturile rezervate<br>
-    Valorile sunt estimative, bazate pe km parcurși pentru activitatea de ridesharing.
-  </div>
+  ${chartRows?`<h2>📊 Performanță per zi</h2>
+  <table><tr><th>Zi</th><th style="text-align:right">Medie profit</th><th style="text-align:right">Notă</th></tr>${chartRows}</table>`:''}
+  <div class="footer-pdf">© 2026 RideStats by Ștefanache Marius — Toate drepturile rezervate<br>Valorile sunt estimative, bazate pe km parcurși pentru activitatea de ridesharing.</div>
   </body></html>`);
   w.document.close();
 }
 
 /* SETTINGS */
 let settingsStack=['main'];
-function openSettings(screen){settingsStack=[screen];renderSettings();document.getElementById('settingsOverlay').classList.add('open');}
+function openSettings(s){settingsStack=[s];renderSettings();document.getElementById('settingsOverlay').classList.add('open');}
 function closeSettingsOutside(e){if(e.target.id==='settingsOverlay')closeSettings();}
 function closeSettings(){document.getElementById('settingsOverlay').classList.remove('open');settingsStack=['main'];}
 function settingsBack(){if(settingsStack.length>1){settingsStack.pop();renderSettings();document.querySelector('.settings-body').scrollTop=0;}else closeSettings();}
@@ -789,61 +854,42 @@ function settingsBack(){if(settingsStack.length>1){settingsStack.pop();renderSet
 function renderSettings(){
   const screen=settingsStack[settingsStack.length-1];
   const cfg=getCfg();
-  document.getElementById('settingsTitle').textContent=screen==='main'?'⚙️ Setări':screen==='manual'?'📖 Manual':'⚙️ Setări';
+  document.getElementById('settingsTitle').textContent=screen==='main'?'⚙️ Setări':'📖 Manual';
   document.querySelector('.settings-body').scrollTop=0;
-
   if(screen==='main'){
     document.getElementById('settingsContent').innerHTML=`
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">🌙 Mod întunecat</div><div class="srow-sub">Comută între dark și light</div></div>
-      <label class="toggle"><input type="checkbox" ${cfg.darkMode?'checked':''} onchange="toggleTheme(this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">🔧 Uzură mașină</div><div class="srow-sub">% din profitul brut lunar</div></div>
-      <input class="sinp" type="number" value="${cfg.uzuraPct}" step="0.5" onchange="saveSetting('uzuraPct',parseFloat(this.value))"/> %
-      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.uzuraOn?'checked':''} onchange="saveSetting('uzuraOn',this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">🧾 Taxe</div><div class="srow-sub">Impozit, comision flotă — % din profit lunar</div></div>
-      <input class="sinp" type="number" value="${cfg.taxePct}" step="0.5" onchange="saveSetting('taxePct',parseFloat(this.value))"/> %
-      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.taxeOn?'checked':''} onchange="saveSetting('taxeOn',this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">🎯 Target</div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">🌙 Mod întunecat</div></div>
+      <label class="toggle"><input type="checkbox" ${cfg.darkMode?'checked':''} onchange="toggleTheme(this.checked)"><span class="slider"></span></label></div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">🔧 Uzură mașină</div><div class="srow-sub">% din profitul brut lunar</div></div>
+      <input class="sinp" type="number" value="${cfg.uzuraPct}" step="0.5" onchange="setCfg({uzuraPct:parseFloat(this.value)});renderTab()"/> %
+      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.uzuraOn?'checked':''} onchange="setCfg({uzuraOn:this.checked});renderTab()"><span class="slider"></span></label></div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">🧾 Taxe</div><div class="srow-sub">Impozit, comision flotă</div></div>
+      <input class="sinp" type="number" value="${cfg.taxePct}" step="0.5" onchange="setCfg({taxePct:parseFloat(this.value)});renderTab()"/> %
+      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.taxeOn?'checked':''} onchange="setCfg({taxeOn:this.checked});renderTab()"><span class="slider"></span></label></div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">🎯 Target</div>
         <div class="srow-sub" style="margin-top:4px">
-          <select onchange="saveSetting('targetType',this.value)" style="background:var(--surface2);border:1px solid var(--border);color:var(--textMid);border-radius:6px;padding:3px 8px;font-family:Nunito,sans-serif;font-size:11px;color-scheme:dark">
+          <select onchange="setCfg({targetType:this.value});renderTab()" style="background:var(--surface2);border:1px solid var(--border);color:var(--textMid);border-radius:6px;padding:3px 8px;font-family:Nunito,sans-serif;font-size:11px;color-scheme:dark">
             <option value="lunar" ${cfg.targetType==='lunar'?'selected':''}>Lunar</option>
             <option value="zilnic" ${cfg.targetType==='zilnic'?'selected':''}>Zilnic</option>
-          </select>
-        </div>
-      </div>
-      <input class="sinp" type="number" value="${cfg.targetVal}" onchange="saveSetting('targetVal',parseFloat(this.value))"/>
-      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.targetOn?'checked':''} onchange="saveSetting('targetOn',this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">⛽ Consum personalizat</div>
+          </select></div></div>
+      <input class="sinp" type="number" value="${cfg.targetVal}" onchange="setCfg({targetVal:parseFloat(this.value)});renderTab()"/>
+      <label class="toggle" style="margin-left:8px"><input type="checkbox" ${cfg.targetOn?'checked':''} onchange="setCfg({targetOn:this.checked});renderTab()"><span class="slider"></span></label></div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">⛽ Consum personalizat</div>
         <div class="srow-sub" style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          🌞 <input type="number" value="${cfg.consumVara}" style="width:50px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 6px;color:var(--text);font-family:Nunito,sans-serif;font-size:12px;font-weight:700;outline:none;text-align:right" onchange="saveSetting('consumVara',parseFloat(this.value))"/>L
-          ❄️ <input type="number" value="${cfg.consumIarna}" style="width:50px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 6px;color:var(--text);font-family:Nunito,sans-serif;font-size:12px;font-weight:700;outline:none;text-align:right" onchange="saveSetting('consumIarna',parseFloat(this.value))"/>L
-        </div>
-      </div>
-      <label class="toggle"><input type="checkbox" ${cfg.consumOn?'checked':''} onchange="saveSetting('consumOn',this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow">
-      <div class="srow-left"><div class="srow-label">🔔 Notificare zilnică</div><div class="srow-sub">Ora 18:00 — "Salut, ai introdus veniturile de azi?"</div></div>
-      <label class="toggle"><input type="checkbox" ${cfg.notifOn?'checked':''} onchange="toggleNotif(this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="srow" style="flex-direction:column;align-items:flex-start;gap:6px">
-      <div class="srow-label">💾 Date</div>
-      <button class="sbtn" onclick="exportData()">📤 Export date (backup)</button>
-      <button class="sbtn" onclick="document.getElementById('importFile').click()">📥 Import date (restaurare)</button>
-      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(this)"/>
-    </div>
-    <div class="srow" style="cursor:pointer" onclick="openManual()">
-      <div class="srow-left"><div class="srow-label">📖 Manual de utilizare</div><div class="srow-sub">Instrucțiuni și informații</div></div>
-      <span style="color:var(--textDim);font-size:18px">›</span>
-    </div>`;
-  } else if(screen==='manual'){
+          🌞 <input type="number" value="${cfg.consumVara}" style="width:50px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 6px;color:var(--text);font-family:Nunito,sans-serif;font-size:12px;font-weight:700;outline:none;text-align:right" onchange="setCfg({consumVara:parseFloat(this.value)})"/>L
+          ❄️ <input type="number" value="${cfg.consumIarna}" style="width:50px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 6px;color:var(--text);font-family:Nunito,sans-serif;font-size:12px;font-weight:700;outline:none;text-align:right" onchange="setCfg({consumIarna:parseFloat(this.value)})"/>L
+        </div></div>
+      <label class="toggle"><input type="checkbox" ${cfg.consumOn?'checked':''} onchange="setCfg({consumOn:this.checked});renderTab()"><span class="slider"></span></label></div>
+    <div class="srow"><div class="srow-left"><div class="srow-label">🔔 Notificare zilnică</div><div class="srow-sub">Ora 18:00 — "Salut, ai introdus veniturile de azi?"</div></div>
+      <label class="toggle"><input type="checkbox" ${cfg.notifOn?'checked':''} onchange="toggleNotif(this.checked)"><span class="slider"></span></label></div>
+    <div class="srow" style="flex-direction:column;align-items:flex-start;gap:6px"><div class="srow-label">💾 Date</div>
+      <button class="sbtn" onclick="exportData()">📤 Export backup</button>
+      <button class="sbtn" onclick="document.getElementById('importFile').click()">📥 Import backup</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(this)"/></div>
+    <div class="srow" style="cursor:pointer" onclick="settingsStack.push('manual');renderSettings()">
+      <div class="srow-left"><div class="srow-label">📖 Manual de utilizare</div></div>
+      <span style="color:var(--textDim);font-size:18px">›</span></div>`;
+  } else {
     document.getElementById('settingsContent').innerHTML=`
     <div class="manual-content">
       <div class="manual-note">💰 Aplicația implică costuri reale. Donațiile tale ne ajută să o menținem activă.</div>
@@ -853,29 +899,19 @@ function renderSettings(){
       </div>
       <a href="mailto:marius.stefanache@gmail.com?subject=Feedback RideStats" class="feedback-btn">✉️ Trimite feedback</a>
       <h3>🏠 Ecran Acasă</h3>
-      <p>Afișează profitul estimativ lunar și statisticile lunii. Banner-ul de sus arată datele zilei selectate. Include comparativ azi vs media lunară cu mesaj motivațional și semnal de alarmă când eficiența scade.</p>
-      <h3>💰 Încasări</h3>
-      <p>Introdu zilnic sumele din Bolt și Uber separat. Câmpul numerar urmărește plățile cash vs card.</p>
-      <h3>🚗 Deplasare</h3>
-      <p>Km parcurși și prețul carburantului. Consumul se calculează automat sezonier sau personalizat din Setări.</p>
-      <h3>⏱ Program</h3>
-      <p>Ora start și final din 15 în 15 minute. Calculează orele lucrate și câștigul orar net.</p>
-      <h3>💸 Cheltuieli</h3>
-      <p>Întreținere, contabilitate sau altele. Se scad din profitul lunar. La "Altele" poți adăuga mențiuni.</p>
-      <h3>📊 Raport</h3>
-      <p>Săptămânal, lunar sau personalizat. Include grafic per zi, cheltuieli detaliate și descărcare PDF structurat.</p>
-      <h3>⚙️ Setări</h3>
-      <p>Uzură, taxe, target, consum personalizat, notificare zilnică și backup date.</p>
-      <div class="manual-note">⚠️ Toate calculele sunt estimative. RideStats este un instrument de monitorizare, nu software de contabilitate oficială.</div>
+      <p>Profit lunar estimativ, statistici și comparativ azi vs medie lunară cu mesaj motivațional.</p>
+      <h3>💰 Încasări</h3><p>Introdu sumele din Bolt și Uber + numerar.</p>
+      <h3>🚗 Deplasare</h3><p>Km și preț carburant. Include istoricul lunii curente și total km.</p>
+      <h3>⏱ Program</h3><p>Introducere rapidă ore sau calculator start/final. Include istoricul lunii.</p>
+      <h3>💸 Cheltuieli</h3><p>Întreținere, contabilitate, altele. Se scad din profitul lunar.</p>
+      <h3>📊 Raport</h3><p>Săptămânal, lunar sau personalizat cu PDF descărcabil.</p>
+      <div class="manual-note">⚠️ Toate calculele sunt estimative. RideStats nu este software de contabilitate oficială.</div>
     </div>`;
   }
 }
 
-function openManual(){settingsStack.push('manual');renderSettings();}
-function saveSetting(key,val){setCfg({[key]:val});renderTab();}
 function toggleTheme(dark){setCfg({darkMode:dark});document.body.className=dark?'dark':'light';}
 
-/* NOTIFICATIONS */
 function toggleNotif(on){
   if(on&&'Notification'in window){
     Notification.requestPermission().then(p=>{
@@ -895,9 +931,8 @@ function scheduleNotif(){
   },target-now);
 }
 
-/* BACKUP */
 function exportData(){
-  const data={zile:S.get('z',{}),cheltuieli:S.get('ch',[]),cfg:getCfg(),exportedAt:new Date().toISOString(),app:'RideStats v1'};
+  const data={zile:S.get('z',{}),cheltuieli:S.get('ch',[]),cfg:getCfg(),exportedAt:new Date().toISOString(),app:'RideStats v2'};
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
   a.download=`ridestats_backup_${curDate}.json`;a.click();
@@ -912,22 +947,22 @@ function importData(input){
       if(data.cheltuieli)S.set('ch',data.cheltuieli);
       if(data.cfg)S.set('cfg',data.cfg);
       document.body.className=getCfg().darkMode?'dark':'light';
-      refreshBanner();renderTab();renderSettings();
+      refreshBanner();updateDateDot();renderTab();renderSettings();
     }catch{alert('Fișier invalid');}
   };
   reader.readAsText(file);input.value='';
 }
 
-/* SAVE HANDLERS */
 function saveBolt(inp){setDay(curDate,{bolt:inp.value});flash(inp);if(curTab==='acasa')renderTab();}
 function saveUber(inp){setDay(curDate,{uber:inp.value});flash(inp);if(curTab==='acasa')renderTab();}
 function saveNumerar(inp){setDay(curDate,{numerar:inp.value});flash(inp);}
 function saveKm(inp){setDay(curDate,{km:inp.value});flash(inp);renderTab();}
 function savePret(inp){const v=parseFloat(inp.value);if(!isNaN(v)&&v>0){setDay(curDate,{pret:inp.value});setCfg({pretL:v});flash(inp);renderTab();}}
+function saveOreManuale(inp){setDay(curDate,{ore_manuale:inp.value,sh:'',sm:'0',eh:'',em:'0'});flash(inp);renderTab();}
 function saveProgram(){
   const sv=document.getElementById('inp_sh')?.value||'',ev=document.getElementById('inp_eh')?.value||'';
   const[sh,sm]=sv.split('_');const[eh,em]=ev.split('_');
-  setDay(curDate,{sh,sm:sm||'0',eh,em:em||'0'});renderTab();
+  setDay(curDate,{sh,sm:sm||'0',eh,em:em||'0',ore_manuale:''});renderTab();
 }
 function saveCheltuiala(){
   const tip=document.getElementById('ch_tip')?.value||'Altele';
@@ -947,16 +982,15 @@ window.addEventListener('load',()=>{
   document.body.className=cfg.darkMode?'dark':'light';
   setTimeout(()=>{const s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>s.style.display='none',500);},2000);
   if(cfg.notifOn)scheduleNotif();
+  updateDateDot();
 });
 refreshBanner();
 renderTab();
 </script>
-
 <script>
 if('serviceWorker'in navigator){
   navigator.serviceWorker.register('sw.js').catch(()=>{
-    // fallback inline SW
-    const sw=`const C='rs-v1';self.addEventListener('install',e=>{self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))));self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
+    const sw=`const C='rs-v2';self.addEventListener('install',e=>{self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))));self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
     const blob=new Blob([sw],{type:'text/javascript'});
     navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
   });

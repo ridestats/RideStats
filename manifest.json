@@ -1,8 +1,9 @@
 {
   "name": "RideStats",
   "short_name": "RideStats",
-  "description": "Calculator venituri ridesharing pentru șoferii Bolt și Uber",
-  "start_url": "./index.html",
+  "description": "Income & profit tracker for Bolt and Uber ridesharing drivers",
+  "start_url": "/RideStats/index.html",
+  "scope": "/RideStats/",
   "display": "standalone",
   "background_color": "#0a1a0b",
   "theme_color": "#0a1a0b",
@@ -10,15 +11,9 @@
   "lang": "ro",
   "icons": [
     {
-      "src": "logo.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "logo.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]

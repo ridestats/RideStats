@@ -1,9 +1,9 @@
-const CACHE = 'ridestats-v1';
+const CACHE = 'ridestats-v2';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './logo.png'
+  './logo.svg'
 ];
 
 self.addEventListener('install', e => {
@@ -24,12 +24,12 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      return cached || fetch(e.request).then(response => {
+    fetch(e.request)
+      .then(response => {
         const clone = response.clone();
         caches.open(CACHE).then(cache => cache.put(e.request, clone));
         return response;
-      }).catch(() => cached);
-    })
+      })
+      .catch(() => caches.match(e.request))
   );
 });
