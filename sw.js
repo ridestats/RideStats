@@ -1,14 +1,15 @@
-const CACHE = 'ridestats-v2';
+const CACHE = 'ridestats-v3';
+const BASE = '/RideStats';
 const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './logo.svg'
+  BASE + '/',
+  BASE + '/index.html',
+  BASE + '/manifest.json',
+  BASE + '/logo.png'
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(ASSETS).catch(() => {}))
+    caches.open(CACHE).then(c => c.addAll(ASSETS).catch(()=>{}))
   );
   self.skipWaiting();
 });
@@ -25,10 +26,10 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   e.respondWith(
     fetch(e.request)
-      .then(response => {
-        const clone = response.clone();
-        caches.open(CACHE).then(cache => cache.put(e.request, clone));
-        return response;
+      .then(res => {
+        const clone = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+        return res;
       })
       .catch(() => caches.match(e.request))
   );

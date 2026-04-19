@@ -2,7 +2,7 @@
   "name": "RideStats",
   "short_name": "RideStats",
   "description": "Income & profit tracker for Bolt and Uber ridesharing drivers",
-  "start_url": "/RideStats/index.html",
+  "start_url": "/RideStats/",
   "scope": "/RideStats/",
   "display": "standalone",
   "background_color": "#0a1a0b",
@@ -11,10 +11,16 @@
   "lang": "ro",
   "icons": [
     {
-      "src": "logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "/RideStats/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/RideStats/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
