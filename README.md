@@ -98,7 +98,7 @@ It’s built for decisions, not just records.
 
 ## 🌐 Live App
 
-👉 https://ridestats.github.io/ridestats/
+👉 https://ridestats.github.io/RideStats/
 
 ---
 
