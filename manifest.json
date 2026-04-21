@@ -1,10 +1,11 @@
 {
   "name": "RideStats",
   "short_name": "RideStats",
+  "description": "Calculator venituri ridesharing Bolt & Uber",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
-  "background_color": "#0a1a0b",
-  "theme_color": "#0a1a0b",
+  "background_color": "#f0f7f1",
+  "theme_color": "#f0f7f1",
   "icons": [{"src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
 }

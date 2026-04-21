@@ -1,4 +1,4 @@
-const CACHE = 'ridestats-v4';
+const CACHE = 'ridestats-v5';
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => { self.clients.claim(); });
 self.addEventListener('fetch', e => {
