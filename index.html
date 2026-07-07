@@ -435,8 +435,8 @@ function openEntry(){
     +'<div class="irow"><span class="ilbl">Km parcurși</span><input class="inp" id="e_km" type="number" inputmode="decimal" value="'+(d.km||'')+'" placeholder="0"/></div>'
     +'<div class="irow"><span class="ilbl">Preț/litru</span><input class="inp" id="e_pret" type="number" inputmode="decimal" value="'+(d.pret||getCfg().pretL||'')+'" placeholder="7,50" step="0.01"/></div>'
     +'<div style="margin-top:6px"><div style="font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:6px">⛽ Carburant plătit din:</div>'
-    +'<div class="fuel-src"><button class="fuel-btn'+(fuelSrc==='numerar'?' sel-num':'')+'" onclick="setEntryFuel('numerar')">💵 Numerar</button>'
-    +'<button class="fuel-btn'+(fuelSrc==='card'?' sel-card':'')+'" onclick="setEntryFuel('card')">💳 Card</button></div></div>'
+    +'<div class="fuel-src"><button class="fuel-btn'+(fuelSrc==="numerar"?" sel-num":"")+'" onclick="setEntryFuel(&quot;numerar&quot;)">💵 Numerar</button>'
+    +'<button class="fuel-btn'+(fuelSrc==="card"?" sel-card":"")+'" onclick="setEntryFuel(&quot;card&quot;)">💳 Card</button></div></div>'
     +'</div>'
     // PROGRAM
     +'<div class="entry-section prog">'
